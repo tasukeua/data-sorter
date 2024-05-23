@@ -46,7 +46,7 @@ public class DateSorter {
      */
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
         return unsortedDates.stream()
-                .sorted(Comparator.comparing((LocalDate date) -> date.getMonth().toString().contains("r"))
+                .sorted(Comparator.comparing((LocalDate date) -> date.getMonth().name().toLowerCase().contains("r"))
                         .thenComparing(date -> date.getMonth().getValue()))
                 .collect(Collectors.toList());
     }
