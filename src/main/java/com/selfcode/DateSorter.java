@@ -1,9 +1,7 @@
 package com.selfcode;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,9 +43,14 @@ public class DateSorter {
      * @return the collection of dates now sorted as per the spec
      */
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
-        return unsortedDates.stream()
-                .sorted(Comparator.comparing((LocalDate date) -> date.getMonth().toString().contains("r"))
-                        .thenComparing(date -> date.getMonth().getValue()))
-                .collect(Collectors.toList());
+        List<LocalDate> datesWithR = unsortedDates.stream()
+                .filter((LocalDate date) -> date.getMonth().name().toLowerCase().contains("r")).collect(Collectors.toList());
+
+        List<LocalDate> datesWithoutR = unsortedDates.stream()
+                .filter((LocalDate date) -> !date.getMonth().name().toLowerCase().contains("r")).collect(Collectors.toList()).reversed();
+
+        datesWithR.addAll(datesWithoutR);
+
+        return datesWithR;
     }
 }
