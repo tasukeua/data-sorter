@@ -13,8 +13,8 @@ public class Main {
         dataCollection.add(LocalDate.of(2007, 1, 1));
         dataCollection.add(LocalDate.of(2032, 5, 3));
 
-        DateSorter dateSorter = new DateSorter();
+        DateSorter dates= new DateSorter();
 
-        System.out.println(dateSorter.sortDates(dataCollection));
+        System.out.println(dates.sortDates(dataCollection));
     }
 }
